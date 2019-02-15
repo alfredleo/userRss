@@ -139,11 +139,16 @@ class SignInController extends \yii\web\Controller
     }
 
     /**
-     * @return string|Response
+     * @return array | string
+     * @throws Exception
      */
     public function actionSignup()
     {
         $model = new SignupForm();
+        if (Yii::$app->request->isAjax && $model->load(Yii::$app->request->post())) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            return ActiveForm::validate($model);
+        }
         if ($model->load(Yii::$app->request->post())) {
             $user = $model->signup();
             if ($user) {
@@ -171,6 +176,8 @@ class SignInController extends \yii\web\Controller
      * @param $token
      * @return Response
      * @throws BadRequestHttpException
+     * @throws \Throwable
+     * @throws \yii\db\StaleObjectException
      */
     public function actionActivation($token)
     {
@@ -270,7 +277,7 @@ class SignInController extends \yii\web\Controller
             $user->username = ArrayHelper::getValue($attributes, 'login');
             // check default location of email, if not found as in google plus dig inside the array of emails
             $email = ArrayHelper::getValue($attributes, 'email');
-            if($email === null){
+            if ($email === null) {
                 $email = ArrayHelper::getValue($attributes, ['emails', 0, 'value']);
             }
             $user->email = $email;
