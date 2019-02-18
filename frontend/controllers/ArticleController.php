@@ -74,9 +74,8 @@ class ArticleController extends Controller
         try {
             $feed = Yii::$app->feed->reader()->import('https://www.delfi.lv/rss/?channel=delfi');
         } catch (RuntimeException $e) {
-            echo "error : " . $e->getMessage();
-            exit;
-        };
+            return "error : " . $e->getMessage();
+        }
         return $this->render('rss', ['model' => $feed]);
     }
 }
