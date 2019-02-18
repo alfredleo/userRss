@@ -82,6 +82,8 @@ docker-compose exec app vendor/bin/codecept run
 ```
 
 ## RSS media parse function
+
+[Issue is not resolved yet](https://github.com/zendframework/zend-feed/issues/49)
 Add this method to Zend\Feed\Reader\Entry\Rss if need pictures of entries. Library should be updated to work with images.
 ```php
     public function getMedia()
@@ -106,3 +108,5 @@ Add this method to Zend\Feed\Reader\Entry\Rss if need pictures of entries. Libra
         return $this->data['media'];
     }
 ```
+
+[]: https://github.com/zendframework/zend-feed/issues/49

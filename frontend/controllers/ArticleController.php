@@ -8,6 +8,7 @@ use frontend\models\search\ArticleSearch;
 use Yii;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
+use Zend\Feed\Exception\RuntimeException;
 
 /**
  * @author Eugene Terentev <eugene@terentev.net>
@@ -66,10 +67,16 @@ class ArticleController extends Controller
 
     /**
      * Show 20 rss news
+     * @return string
      */
     public function actionRss()
     {
-        $feed = Yii::$app->feed->reader()->import('https://www.delfi.lv/rss/?channel=delfi');
+        try {
+            $feed = Yii::$app->feed->reader()->import('https://www.delfi.lv/rss/?channel=delfi');
+        } catch (RuntimeException $e) {
+            echo "error : " . $e->getMessage();
+            exit;
+        };
         return $this->render('rss', ['model' => $feed]);
     }
 }
