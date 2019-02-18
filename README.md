@@ -80,3 +80,29 @@ docker-compose exec app php -S localhost:8080
 ```
 docker-compose exec app vendor/bin/codecept run
 ```
+
+## RSS media parse function
+Add this method to Zend\Feed\Reader\Entry\Rss if need pictures of entries. Library should be updated to work with images.
+```php
+    public function getMedia()
+    {
+        if (array_key_exists('media', $this->data)) {
+            return $this->data['media'];
+        }
+
+        $media = null;
+
+        if ($this->getType() == Reader\Reader::TYPE_RSS_20) {
+            $nodeList = $this->xpath->query($this->xpathQueryRss . '/media:content');
+
+            if ($nodeList->length > 0) {
+                $media = new \stdClass();
+                $media->url    = $nodeList->item(0)->getAttribute('url');
+
+            }
+        }
+        $this->data['media'] = $media;
+
+        return $this->data['media'];
+    }
+```
