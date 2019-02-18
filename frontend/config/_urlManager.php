@@ -12,6 +12,7 @@ return [
 
         // Articles
         ['pattern' => 'article/index', 'route' => 'article/index'],
+        ['pattern' => 'article/rss', 'route' => 'article/rss'],
         ['pattern' => 'article/attachment-download', 'route' => 'article/attachment-download'],
         ['pattern' => 'article/<slug>', 'route' => 'article/view'],
 

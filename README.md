@@ -1,3 +1,16 @@
+1) User registration - form with e-mail and password fields + e-mail verification using ajax. 
+Existence of already registered e-mail should be checked “on the fly” via ajax call when writing e-mail address and before submitting form. 
+After registration user should receive confirmation e-mail. 
+2) Login form with e-mail address and password 
+Logins are permitted only for successfully verified e-mail addresses. 
+3) RSS feed view 
+After successful login display top 20 news from following RSS feed https://www.delfi.lv/rss/?channel=delfi
+
+You should do this task by showing your best experience in UX, UI, backend stuff. 
+There are no restrictions on frameworks (PHP and/or JS) used.
+
+
+
 ## Docker installation
 1. Install [docker](https://docs.docker.com/engine/installation/), [docker-compose](https://docs.docker.com/compose/install/) and [composer](https://getcomposer.org/) to your system (that is host machine)
 2. Run ``cp .env-dist .env`` to copy config file and ``composer run-script docker:start`` to start, ``docker-compose exec app composer install && docker-compose exec app console/yii app/setup``

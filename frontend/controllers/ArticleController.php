@@ -45,9 +45,11 @@ class ArticleController extends Controller
 
     /**
      * @param $id
-     * @return $this
+     * @return \yii\console\Response|\yii\web\Response
      * @throws NotFoundHttpException
-     * @throws \yii\web\HttpException
+     * @throws \League\Flysystem\FileNotFoundException
+     * @throws \yii\base\InvalidConfigException
+     * @throws \yii\web\RangeNotSatisfiableHttpException
      */
     public function actionAttachmentDownload($id)
     {
@@ -60,5 +62,14 @@ class ArticleController extends Controller
             Yii::$app->fileStorage->getFilesystem()->readStream($model->path),
             $model->name
         );
+    }
+
+    /**
+     * Show 20 rss news
+     */
+    public function actionRss()
+    {
+        $feed = Yii::$app->feed->reader()->import('https://www.delfi.lv/rss/?channel=delfi');
+        return $this->render('rss', ['model' => $feed]);
     }
 }

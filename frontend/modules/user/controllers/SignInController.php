@@ -97,7 +97,7 @@ class SignInController extends \yii\web\Controller
             return ActiveForm::validate($model);
         }
         if ($model->load(Yii::$app->request->post()) && $model->login()) {
-            return $this->goBack();
+            return Yii::$app->getResponse()->redirect(['/article/rss']);
         }
 
         return $this->render('login', [
