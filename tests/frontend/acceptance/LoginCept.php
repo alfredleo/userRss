@@ -28,6 +28,9 @@ $I->expectTo('see that user is logged');
 $I->seeLink('Logout');
 $I->dontSeeLink('Login');
 $I->dontSeeLink('Signup');
+
+$I->expectTo('see that rss is loaded after successful user signup');
+$I->seeLink('https://www.delfi.lv');
 /** Uncomment if using WebDriver
  * $I->click('Logout (erau)');
  * $I->dontSeeLink('Logout (erau)');
