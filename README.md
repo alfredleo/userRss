@@ -108,5 +108,4 @@ Add this method to Zend\Feed\Reader\Entry\Rss if need pictures of entries. Libra
         return $this->data['media'];
     }
 ```
-
-[]: https://github.com/zendframework/zend-feed/issues/49
+[![Try in Play with Docker](https://raw.githubusercontent.com/play-with-docker/stacks/master/assets/images/button.png)](https://labs.play-with-docker.com/?stack=https://raw.githubusercontent.com/alfredleo/userRss/master/docker-compose.yml)
