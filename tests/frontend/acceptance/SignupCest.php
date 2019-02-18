@@ -67,8 +67,7 @@ class SignupCest
             $I->wait(3); // only for selenium
         }
 
-        $I->expectTo('see that user logged in');
-        $I->click("tester", "a");
-        $I->see("Logout", "a");
+        $I->expectTo('see that user is not logged in, need email confirmation');
+        $I->see('Your account has been successfully created. Check your email for further instructions.', '.alert-success');
     }
 }

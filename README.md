@@ -1,6 +1,6 @@
 ## Docker installation
 1. Install [docker](https://docs.docker.com/engine/installation/), [docker-compose](https://docs.docker.com/compose/install/) and [composer](https://getcomposer.org/) to your system (that is host machine)
-2. Run ``cp .env-dist .env`` to copy config file and ``composer run-script docker:start`` to start
+2. Run ``cp .env-dist .env`` to copy config file and ``composer run-script docker:start`` to start, ``docker-compose exec app composer install && docker-compose exec app console/yii app/setup``
 3. That's all - your application is accessible on [http://yii2-starter-kit.localhost](http://yii2-starter-kit.localhost)
 
  * - docker host IP address may vary on Windows and MacOS systems
@@ -45,7 +45,10 @@ To run tests:
 docker-compose up -d
 ```
 2. Create `tests` database:
+windows version
+linux version
 ```
+docker-compose exec db mysql -uroot -proot -e "CREATE DATABASE `yii2-starter-kit-test` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" 
 docker-compose exec db mysql -uroot -proot -e "CREATE DATABASE \`yii2-starter-kit-test\` CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci" 
 ```
 3. Build needed files
