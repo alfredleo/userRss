@@ -9,7 +9,7 @@ services:
       - db
       - mailcatcher
     env_file:
-      - .env
+      - .env.dist
 
   webpacker:
     image: node:9-alpine
